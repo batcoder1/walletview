@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/wooltar/walleview.svg?branch=master)](https://travis-ci.org/wooltar/walleview)
+[![Build Status](https://travis-ci.org/wooltar/walletview.svg?branch=master)](https://travis-ci.org/wooltar/walletview)
 ![npm](https://img.shields.io/badge/npm-v6.7.0-blue.svg)
 
 # WalletView
