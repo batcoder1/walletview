@@ -13,9 +13,14 @@ This repository has submodules, to clone execute this command:
  git clone --recurse-submodules https://github.com/wooltar/walletview.git
  ```
  
-## Docker start
+## Local Docker start
 ```
 $ docker-compose up
+```
+when finish it
+visit:
+```
+ http://localhost
 ```
 
 ## Run all tests

@@ -5,18 +5,19 @@ services:
     container_name: frontend
     restart: always
     build:
-      context: .
-      dockerfile: ./frontend/docker/containers/frontend/Dockerfile
+      context: ./frontend
+      dockerfile: ./docker/containers/frontend/Dockerfile
       args:
         - NODE_ENV=local
     ports:
       - "4200:4200"
     networks:
-      - docker-net
-    environment:
-      - NODE_ENV=local
-    external_links:
+      docker-net:
+        ipv4_address: "10.5.0.7"
+    env_file: ./frontend/.env
+    links:
       - backend
+
   backend:
     container_name: backend
     restart: always
@@ -24,21 +25,21 @@ services:
     env_file: ./backend/.env
     build:
       # Current folder is root folder
-      context: .
+      context: ./backend
       # Path of dockerfile
-      dockerfile: ./backend/docker/Dockerfile
+      dockerfile: ./docker/Dockerfile
       args:
         - NODE_ENV=local
     volumes:
-      - ./backend/:/opt/app:rw  
+      - .backend/:/opt/app:rw  
     # api binging ports
     ports:
       - "9000:9000"  
     # Network settings  
     networks:
-      - docker-net
-    environment:
-      - NODE_ENV=local
+      docker-net:
+        ipv4_address: "10.5.0.6"
+    env_file: ./backend/.env
    
 
   nginx:
@@ -48,12 +49,17 @@ services:
     ports:
       - "80:80"
     networks:
-      - docker-net
+      docker-net:
+        ipv4_address: "10.5.0.5"
     links:
       - frontend
     
    
 networks:
   docker-net:
-    driver: bridge
+    ipam:
+      driver: default
+      # Subnnet CIDR address
+      config:
+        - subnet: 10.5.0.0/16
   
