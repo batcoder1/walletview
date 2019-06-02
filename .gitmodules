@@ -1,0 +1,8 @@
+[submodule "walletview-backend"]
+      path = backend
+      url = git://github.com/wooltar/walletview-backend.git
+
+[submodule "walletview-frontend"]
+      path = frontend
+      url = git://github.com/wooltar/walletview-frontend.git
+ 

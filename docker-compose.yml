@@ -1,0 +1,59 @@
+version: '3'
+
+services: 
+  frontend:
+    container_name: frontend
+    restart: always
+    build:
+      context: .
+      dockerfile: ./frontend/docker/containers/frontend/Dockerfile
+      args:
+        - NODE_ENV=local
+    ports:
+      - "4200:4200"
+    networks:
+      - docker-net
+    environment:
+      - NODE_ENV=local
+    external_links:
+      - backend
+  backend:
+    container_name: backend
+    restart: always
+    # Environment variable file
+    env_file: ./backend/.env
+    build:
+      # Current folder is root folder
+      context: .
+      # Path of dockerfile
+      dockerfile: ./backend/docker/Dockerfile
+      args:
+        - NODE_ENV=local
+    volumes:
+      - ./backend/:/opt/app:rw  
+    # api binging ports
+    ports:
+      - "9000:9000"  
+    # Network settings  
+    networks:
+      - docker-net
+    environment:
+      - NODE_ENV=local
+   
+
+  nginx:
+    container_name: nginx
+    build: ./frontend/docker/containers/nginx
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - docker-net
+    links:
+      - frontend
+    
+   
+networks:
+  docker-net:
+    driver: bridge
+  
