@@ -14,7 +14,9 @@ services:
     networks:
       docker-net:
         ipv4_address: "10.5.0.7"
-    env_file: ./frontend/.env
+    environment:
+      - BACKEND=http://10.5.0.6:9000
+      - ENV=development
     links:
       - backend
 
@@ -31,7 +33,7 @@ services:
       args:
         - NODE_ENV=local
     volumes:
-      - .backend/:/opt/app:rw  
+      - ./:/opt/app:rw  
     # api binging ports
     ports:
       - "9000:9000"  
