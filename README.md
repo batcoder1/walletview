@@ -17,19 +17,19 @@ This repository has submodules, to clone execute this command:
 ```
 $ docker-compose up
 ```
-when finish it
-visit:
+is ready?
+you can visit:
 ```
  http://localhost
 ```
 
 ## Run all tests
-```https://walletviewbackend.herokuapp.com/
-$ yarn test
+```
+$ yarn install && yarn test
 ```
  
 ## Deployed
 
 ```
-http://walletview.herokuapp.com
+https://walletview.herokuapp.com
 ```

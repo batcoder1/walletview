@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "yarn run start:backend && yarn run start:frontend",
     "start:backend": "node ./backend/api/app.js &",
-    "start:frontend": "cd frontend && node server.js",
+    "start:frontend": "cd frontend && yarn run start:dev",
     "build": "cd frontend && npm run build-prod",
     "postinstall": "node patch.js",
     "test": "mocha ./backend/tests/*.spec.js --exit"
